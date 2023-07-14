@@ -1,4 +1,5 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -10,16 +11,12 @@ class SplashScreen extends StatelessWidget {
       gifPath: 'assets/images/loading.gif',
       gifWidth: 269,
       gifHeight: 474,
-      defaultNextScreen: null,
-      duration: const Duration(milliseconds: 3515),
+      defaultNextScreen: LoginScreen(),
+      duration: const Duration(seconds: 5),
       onInit: () async {
-        debugPrint("onInit 1");
         await Future.delayed(const Duration(milliseconds: 2000));
-        debugPrint("onInit 2");
       },
       onEnd: () async {
-        debugPrint("onEnd 1");
-        debugPrint("onEnd 2");
       },
     );
   }
