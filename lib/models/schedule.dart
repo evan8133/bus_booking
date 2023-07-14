@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 class Schedule {
   String scheduleId;
   String routeId;
@@ -6,12 +8,12 @@ class Schedule {
   String date;
 
   Schedule({
-    required this.scheduleId,
+    String? scheduleId,
     required this.routeId,
     required this.driverId,
     required this.busId,
     required this.date,
-  });
+  }) : scheduleId = scheduleId ?? Uuid().v4();
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(

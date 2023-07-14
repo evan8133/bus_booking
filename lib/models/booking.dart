@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 class Booking {
   String bookingId;
   String userId;
@@ -6,12 +8,12 @@ class Booking {
   int numberOfPersons;
 
   Booking({
-    required this.bookingId,
+    String? bookingId,
     required this.userId,
     required this.scheduleId,
     required this.date,
     required this.numberOfPersons,
-  });
+  }) : bookingId = bookingId ?? Uuid().v4();
 
   factory Booking.fromJson(Map<String, dynamic> json) {
     return Booking(

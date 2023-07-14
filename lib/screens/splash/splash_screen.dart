@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
@@ -40,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
         log(userData.toString());
         if (userData.containsKey('role')) {
           if (userData['role'] == 'admin') {
-            //context.router.replace(const AdminNavigation());
+            context.router.replace(const AdminRoute());
           } else {
             context.router.replace(const HomeRoute());
           }
@@ -64,7 +66,6 @@ class _SplashScreenState extends State<SplashScreen> {
       duration: const Duration(seconds: 2),
       onInit: () async {},
       onEnd: () async {},
-      
     );
   }
 }

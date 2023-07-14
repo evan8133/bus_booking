@@ -40,6 +40,7 @@ class FirebsaeAuthMethods {
 
         if (userData.containsKey('role')) {
           if (userData['role'] == 'admin') {
+            context.router.replace(const AdminRoute());
           } else {
             context.router.replace(const HomeRoute());
           }
@@ -70,6 +71,7 @@ class FirebsaeAuthMethods {
             .collection('users')
             .doc(_auth.currentUser!.uid)
             .set({
+          'userId': _auth.currentUser!.uid,
           'name': userData['name'],
           'email': userData['email'],
           'phone': userData['phone'],
@@ -90,5 +92,9 @@ class FirebsaeAuthMethods {
         showSnackBar(context, e.message!);
       }
     }
+  }
+
+  void setDisplayName(String name) {
+    _auth.currentUser!.updateDisplayName(name);
   }
 }

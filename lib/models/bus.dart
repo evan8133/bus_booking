@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 class Bus {
   String busId;
   String registrationNumber;
@@ -6,12 +8,12 @@ class Bus {
   String driverId;
 
   Bus({
-    required this.busId,
+    String? busId,
     required this.registrationNumber,
     required this.model,
     required this.capacity,
     required this.driverId,
-  });
+  }) : busId = busId ?? Uuid().v4();
 
   factory Bus.fromJson(Map<String, dynamic> json) {
     return Bus(

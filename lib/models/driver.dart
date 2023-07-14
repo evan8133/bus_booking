@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 class Driver {
   String driverId;
   String name;
@@ -5,11 +7,11 @@ class Driver {
   String contactInfo;
 
   Driver({
-    required this.driverId,
+    String? driverId,
     required this.name,
     required this.licenseNumber,
     required this.contactInfo,
-  });
+  }) : driverId = driverId ?? const Uuid().v4();
 
   factory Driver.fromJson(Map<String, dynamic> json) {
     return Driver(
