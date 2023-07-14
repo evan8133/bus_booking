@@ -31,4 +31,8 @@ class BusService {
         .toList();
     return buses;
   }
+
+  Future<void> updateBus(Bus bus) {
+    return busesCollection.doc(bus.busId).update(bus.toJson());
+  }
 }

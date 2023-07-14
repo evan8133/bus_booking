@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/driver.dart';
+import '../../../utils/snackMessage.dart';
 import '../../admin_drawer.dart';
 
 class ManageDriverScreen extends StatefulWidget {
@@ -53,71 +54,106 @@ class _ManageDriverScreenState extends State<ManageDriverScreen> {
                 );
               }
               final List<Driver> drivers = snapshot.data as List<Driver>;
-              return ListView.builder(
-                itemCount: drivers.length,
-                itemBuilder: (context, index) {
-                  final Driver driver = drivers[index];
-                  return Card(
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        child: Icon(Icons.person),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  itemCount: drivers.length,
+                  itemBuilder: (context, index) {
+                    final Driver driver = drivers[index];
+                    return Card(
+                      child: ListTile(
+                        leading: const CircleAvatar(
+                          child: Icon(Icons.person),
+                        ),
+                        title: Text(
+                          driver.name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                const Icon(Icons.badge),
+                                const SizedBox(width: 4),
+                                Text(
+                                  driver.licenseNumber,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                const Icon(Icons.phone),
+                                const SizedBox(width: 4),
+                                Text(
+                                  driver.contactInfo,
+                                  style: const TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () {
+                                    context.router
+                                        .push(EditDriverRoute(driver: driver));
+                                  },
+                                ),
+                                const SizedBox(height: 4),
+                                IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Confirm Delete'),
+                                          content: const Text(
+                                              'Are you sure you want to delete this driver?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: const Text('Cancel'),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text('Delete'),
+                                              onPressed: () {
+                                                context
+                                                    .read<DriverService>()
+                                                    .deleteDriver(
+                                                        driver.driverId)
+                                                    .then((value) {
+                                                  showSnackBar(context,
+                                                      'Driver Deleted Successfully');
+                                                  setState(() {});
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        onTap: () {
+                          // Handle tap on driver
+                        },
                       ),
-                      title: Text(
-                        driver.name,
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              const Icon(Icons.badge),
-                              const SizedBox(width: 4),
-                              Text(
-                                driver.licenseNumber,
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              const Icon(Icons.phone),
-                              const SizedBox(width: 4),
-                              Text(
-                                driver.contactInfo,
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.edit),
-                                onPressed: () {
-                                  context.router
-                                      .push(EditDriverRoute(driver: driver));
-                                },
-                              ),
-                              const SizedBox(height: 4),
-                              IconButton(
-                                icon: const Icon(Icons.delete),
-                                onPressed: () {
-                                  // Handle delete driver
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      onTap: () {
-                        // Handle tap on driver
-                      },
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               );
             },
           ),

@@ -10,44 +10,55 @@ class MyTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String? initialValue;
   final bool obscureText;
+  final Function()? action;
+  final Icon? actionIcon;
 
-  const MyTextField({
-    Key? key,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    this.onChanged,
-    this.validator,
-    this.keyboardType = TextInputType.text,
-    this.initialValue,
-    this.obscureText = false,
-  }) : super(key: key);
+  const MyTextField(
+      {Key? key,
+      required this.controller,
+      required this.labelText,
+      required this.hintText,
+      this.onChanged,
+      this.validator,
+      this.keyboardType = TextInputType.text,
+      this.initialValue,
+      this.obscureText = false,
+      this.action,
+      this.actionIcon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        label: Text(labelText),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        filled: true,
-        hintText: hintText,
-        hintStyle: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
+          label: Text(labelText),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+          filled: true,
+          hintText: hintText,
+          hintStyle: TextStyle(
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          suffixIcon: action == null
+              ? null
+              : IconButton(
+                  onPressed: action,
+                  icon: const Icon(Icons.search),
+                )),
       obscureText: obscureText,
       initialValue: initialValue,
       onChanged: onChanged,
       validator: validator,
       keyboardType: keyboardType,
+      readOnly: action != null,
     );
   }
 }

@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bus_booking/admin/home/admin_home_screen.dart';
+import 'package:bus_booking/admin/manage/bus/add_bus.dart';
 import 'package:bus_booking/admin/manage/bus/admin_manage_bus.dart';
+import 'package:bus_booking/admin/manage/bus/edit_bus.dart';
 import 'package:bus_booking/admin/manage/driver/admin_manage_driver.dart';
 import 'package:bus_booking/admin/manage/bus_route/admin_manage_route.dart';
 import 'package:bus_booking/admin/manage/driver/edit_driver.dart';
+import 'package:bus_booking/admin/manage/driver/select_driver.dart';
 import 'package:bus_booking/admin/manage/schedule/admin_manage_schdedule.dart';
 import 'package:bus_booking/admin/manage/admin_view_booking.dart';
 import 'package:bus_booking/admin/manage/admin_view_users.dart';
@@ -70,6 +73,18 @@ import '../screens/splash/splash_screen.dart';
     MaterialRoute(
       page: EditDriverScreen,
       path: '/edit-driver:driver',
+    ),
+    MaterialRoute(
+      page: AddBusScreen,
+      path: '/add-bus',
+    ),
+    MaterialRoute(
+      page: EditBusScreen,
+      path: '/edit-bus:bus',
+    ),
+    MaterialRoute(
+      page: SelectDriverScreen,
+      path: '/select-driver',
     ),
   ],
 )

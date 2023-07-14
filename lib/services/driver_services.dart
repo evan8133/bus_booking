@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/driver.dart';
 
 class DriverService {
-  
   final CollectionReference driversCollection =
       FirebaseFirestore.instance.collection('drivers');
 
@@ -30,5 +29,9 @@ class DriverService {
         .map((doc) => Driver.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
     return drivers;
+  }
+
+  Future<void> updateDriver(Driver driver) {
+    return driversCollection.doc(driver.driverId).update(driver.toJson());
   }
 }
