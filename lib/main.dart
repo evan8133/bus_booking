@@ -1,9 +1,11 @@
+import 'package:bus_booking/routes/routes.gr.dart';
 import 'package:bus_booking/screens/splash/splash_screen.dart';
 import 'package:bus_booking/services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -14,14 +16,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    const MyApp(),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           create: (_) => FirebsaeAuthMethods(FirebaseAuth.instance),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: FlexThemeData.light(
           scheme: FlexScheme.flutterDash,
@@ -60,7 +60,16 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.notoSans().fontFamily,
         ),
         themeMode: ThemeMode.system,
-        home: const SplashScreen(),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        builder: (context, router) {
+          // initialize screen util here
+          ScreenUtil.init(
+            context,
+            designSize: const Size(360, 690),
+          );
+          return router!;
+        },
       ),
     );
   }
