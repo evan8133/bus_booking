@@ -243,7 +243,7 @@ class _AddRouteScreenState extends State<AddRouteScreen> {
         title: const Text('Add Route'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Form(
           key: _formKey,
           child: ListView(

@@ -15,6 +15,7 @@ import 'package:bus_booking/screens/home/home_screen.dart';
 import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:bus_booking/screens/registeration/register_screen.dart';
 
+import '../admin/manage/bus_route/view_route_info.dart';
 import '../admin/manage/driver/add_driver.dart';
 import '../screens/splash/splash_screen.dart';
 
@@ -89,6 +90,10 @@ import '../screens/splash/splash_screen.dart';
     MaterialRoute(
       page: AddRouteScreen,
       path: '/add-route',
+    ),
+    MaterialRoute(
+      page: ViewRouteInfoScreen,
+      path: '/view-route-info:route',
     ),
   ],
 )
