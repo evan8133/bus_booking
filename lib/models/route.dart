@@ -1,5 +1,7 @@
 import 'package:uuid/uuid.dart';
 
+import 'geolocation.dart';
+
 class Route {
   String routeId;
   String name;
@@ -13,7 +15,7 @@ class Route {
     required this.start,
     required this.end,
     required this.stops,
-  }) : routeId = routeId ?? Uuid().v4();
+  }) : routeId = routeId ?? const Uuid().v4();
 
   factory Route.fromJson(Map<String, dynamic> json) {
     return Route(
@@ -39,26 +41,3 @@ class Route {
 }
 
 
-class Geolocation {
-  double latitude;
-  double longitude;
-
-  Geolocation({
-    required this.latitude,
-    required this.longitude,
-  });
-
-  factory Geolocation.fromJson(Map<String, dynamic> json) {
-    return Geolocation(
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'latitude': latitude,
-      'longitude': longitude,
-    };
-  }
-}

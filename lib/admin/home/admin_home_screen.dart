@@ -7,7 +7,7 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AdminDrawer(),
+      drawer: const AdminDrawer(),
       appBar: AppBar(
         title: const Text('Admin Home'),
         actions: [

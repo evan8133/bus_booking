@@ -79,13 +79,17 @@ class _ManageBusScreenState extends State<ManageBusScreen> {
                           IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
-                              // Handle edit button press
+                              context.router.push(
+                                EditBusRoute(
+                                  bus: bus,
+                                ),
+                              );
                             },
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {
-                              // Handle delete button press
+                              context.read<BusService>().deleteBus(bus.busId);
                             },
                           ),
                         ],
@@ -102,7 +106,10 @@ class _ManageBusScreenState extends State<ManageBusScreen> {
                                 return const CircularProgressIndicator();
                               }
                               if (snapshot.hasError || !snapshot.hasData) {
-                                return const Text('Driver not found');
+                                return const Text('Driver not found, or has been deleted');
+                              }
+                              if (snapshot.hasData && snapshot.data == null) {
+                                return const Text('Driver not found, or has been deleted');
                               }
                               final driver = snapshot.data!;
                               return Column(

@@ -13,7 +13,7 @@ class Schedule {
     required this.driverId,
     required this.busId,
     required this.date,
-  }) : scheduleId = scheduleId ?? Uuid().v4();
+  }) : scheduleId = scheduleId ?? const Uuid().v4();
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(

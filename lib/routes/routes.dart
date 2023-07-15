@@ -3,6 +3,7 @@ import 'package:bus_booking/admin/home/admin_home_screen.dart';
 import 'package:bus_booking/admin/manage/bus/add_bus.dart';
 import 'package:bus_booking/admin/manage/bus/admin_manage_bus.dart';
 import 'package:bus_booking/admin/manage/bus/edit_bus.dart';
+import 'package:bus_booking/admin/manage/bus_route/add_route.dart';
 import 'package:bus_booking/admin/manage/driver/admin_manage_driver.dart';
 import 'package:bus_booking/admin/manage/bus_route/admin_manage_route.dart';
 import 'package:bus_booking/admin/manage/driver/edit_driver.dart';
@@ -13,7 +14,6 @@ import 'package:bus_booking/admin/manage/admin_view_users.dart';
 import 'package:bus_booking/screens/home/home_screen.dart';
 import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:bus_booking/screens/registeration/register_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../admin/manage/driver/add_driver.dart';
 import '../screens/splash/splash_screen.dart';
@@ -85,6 +85,10 @@ import '../screens/splash/splash_screen.dart';
     MaterialRoute(
       page: SelectDriverScreen,
       path: '/select-driver',
+    ),
+    MaterialRoute(
+      page: AddRouteScreen,
+      path: '/add-route',
     ),
   ],
 )

@@ -5,7 +5,6 @@ import 'dart:developer';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bus_booking/routes/routes.gr.dart';
-import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

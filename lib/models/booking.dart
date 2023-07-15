@@ -13,7 +13,7 @@ class Booking {
     required this.scheduleId,
     required this.date,
     required this.numberOfPersons,
-  }) : bookingId = bookingId ?? Uuid().v4();
+  }) : bookingId = bookingId ?? const Uuid().v4();
 
   factory Booking.fromJson(Map<String, dynamic> json) {
     return Booking(

@@ -13,7 +13,7 @@ class Bus {
     required this.model,
     required this.capacity,
     required this.driverId,
-  }) : busId = busId ?? Uuid().v4();
+  }) : busId = busId ?? const Uuid().v4();
 
   factory Bus.fromJson(Map<String, dynamic> json) {
     return Bus(

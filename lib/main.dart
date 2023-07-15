@@ -1,5 +1,4 @@
 import 'package:bus_booking/routes/routes.gr.dart';
-import 'package:bus_booking/screens/splash/splash_screen.dart';
 import 'package:bus_booking/services/auth_services.dart';
 import 'package:bus_booking/services/bus_services.dart';
 import 'package:bus_booking/services/driver_services.dart';

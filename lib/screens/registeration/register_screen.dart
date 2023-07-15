@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:bus_booking/services/auth_services.dart';
 import 'package:bus_booking/utils/button.dart';
 import 'package:bus_booking/utils/input_box.dart';

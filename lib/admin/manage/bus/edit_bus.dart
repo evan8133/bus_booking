@@ -1,13 +1,18 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bus_booking/services/bus_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../models/bus.dart';
+import '../../../models/driver.dart';
+import '../../../routes/routes.gr.dart';
 import '../../../utils/button.dart';
 import '../../../utils/input_box.dart';
 
 class EditBusScreen extends StatefulWidget {
   final Bus bus;
 
-  EditBusScreen({Key? key, required this.bus}) : super(key: key);
+  const EditBusScreen({Key? key, required this.bus}) : super(key: key);
 
   @override
   State<EditBusScreen> createState() => _EditBusScreenState();
@@ -39,10 +44,21 @@ class _EditBusScreenState extends State<EditBusScreen> {
       widget.bus.capacity = int.parse(_capacityController.text);
       widget.bus.driverId = _driverIdController.text;
 
-      // TODO: Update the bus object in your desired storage or perform any other action
-
-      // Navigate back or show a success message
-      Navigator.pop(context);
+      context.read<BusService>().updateBus(widget.bus).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Bus updated successfully'),
+          ),
+        );
+        context.router.pop();
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Error updating bus'),
+          ),
+        );
+        context.router.pop();
+      });
     }
   }
 
@@ -59,10 +75,10 @@ class _EditBusScreenState extends State<EditBusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Bus'),
+        title: const Text('Edit Bus'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -78,7 +94,7 @@ class _EditBusScreenState extends State<EditBusScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               MyTextField(
                 controller: _modelController,
                 labelText: 'Model',
@@ -90,7 +106,7 @@ class _EditBusScreenState extends State<EditBusScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               MyTextField(
                 controller: _capacityController,
                 labelText: 'Capacity',
@@ -106,7 +122,7 @@ class _EditBusScreenState extends State<EditBusScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               MyTextField(
                 controller: _driverIdController,
                 labelText: 'Driver ID',
@@ -117,10 +133,17 @@ class _EditBusScreenState extends State<EditBusScreen> {
                   }
                   return null;
                 },
+                action: () async {
+                  final driver =
+                      await context.router.push(const SelectDriverRoute());
+                  setState(() {
+                    _driverIdController.text = (driver as Driver).driverId;
+                  });
+                },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               MyButton(
-                text: Text('Update'),
+                text: const Text('Update'),
                 onPressed: _submitForm,
               ),
             ],

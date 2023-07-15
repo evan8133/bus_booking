@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uuid/uuid.dart';
 
+import '../models/geolocation.dart';
 import '../models/route.dart';
 
 class RouteService {
