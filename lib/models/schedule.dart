@@ -3,35 +3,39 @@ import 'package:uuid/uuid.dart';
 class Schedule {
   String scheduleId;
   String routeId;
-  String driverId;
   String busId;
-  String date;
+  List<DateTime> departureTimes;
 
   Schedule({
     String? scheduleId,
     required this.routeId,
-    required this.driverId,
     required this.busId,
-    required this.date,
-  }) : scheduleId = scheduleId ?? const Uuid().v4();
+    List<DateTime>? departureTimes,
+  })  : scheduleId = scheduleId ?? const Uuid().v4(),
+        departureTimes = departureTimes ?? [];
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
+    final List<dynamic> departureTimesJson = json['departureTimes'];
+    final List<DateTime> departureTimes =
+        departureTimesJson.map((time) => DateTime.parse(time)).toList();
+
     return Schedule(
       scheduleId: json['scheduleId'],
       routeId: json['routeId'],
-      driverId: json['driverId'],
       busId: json['busId'],
-      date: json['date'],
+      departureTimes: departureTimes,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final List<String> departureTimesJson =
+        departureTimes.map((time) => time.toIso8601String()).toList();
+
     return {
       'scheduleId': scheduleId,
       'routeId': routeId,
-      'driverId': driverId,
       'busId': busId,
-      'date': date,
+      'departureTimes': departureTimesJson,
     };
   }
 }

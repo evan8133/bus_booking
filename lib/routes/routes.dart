@@ -15,8 +15,12 @@ import 'package:bus_booking/screens/home/home_screen.dart';
 import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:bus_booking/screens/registeration/register_screen.dart';
 
+import '../admin/manage/bus_route/edit_route.dart';
 import '../admin/manage/bus_route/view_route_info.dart';
 import '../admin/manage/driver/add_driver.dart';
+import '../admin/manage/schedule/add_schedule.dart';
+import '../admin/manage/schedule/edit_schedule.dart';
+import '../admin/manage/schedule/view_schedule.dart';
 import '../screens/splash/splash_screen.dart';
 
 @MaterialAutoRouter(
@@ -94,6 +98,22 @@ import '../screens/splash/splash_screen.dart';
     MaterialRoute(
       page: ViewRouteInfoScreen,
       path: '/view-route-info:route',
+    ),
+    MaterialRoute(
+      page: EditRouteScreen,
+      path: '/edit-route:route',
+    ),
+    MaterialRoute(
+      page: AddScheduleScreen,
+      path: '/add-schedule',
+    ),
+    MaterialRoute(
+      page: EditScheduleScreen,
+      path: '/edit-schedule:schedule',
+    ),
+    MaterialRoute(
+      page: ViewScheduleScreen,
+      path: '/view-schedule:schedule',
     ),
   ],
 )

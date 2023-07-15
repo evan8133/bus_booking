@@ -1,71 +1,74 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bus_booking/services/route_services.dart';
-import 'package:bus_booking/utils/snackMessage.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'dart:convert';
 
-import '../../../models/geolocation.dart';
-import '../../../models/route.dart' as MyRoute;
-import '../../../utils/button.dart';
-import '../../../utils/input_box.dart';
+import 'package:bus_booking/utils/snackMessage.dart';
+import 'package:flutter/material.dart';
+import 'package:bus_booking/models/route.dart' as MyRoute;
+import 'package:http/http.dart' as http;
+import 'package:bus_booking/utils/input_box.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+import 'package:provider/provider.dart';
 
-class AddRouteScreen extends StatefulWidget {
-  const AddRouteScreen({Key? key}) : super(key: key);
+import '../../../models/geolocation.dart';
+import '../../../services/route_services.dart';
+
+class EditRouteScreen extends StatefulWidget {
+  final MyRoute.Route route;
+
+  const EditRouteScreen({Key? key, required this.route}) : super(key: key);
 
   @override
-  State<AddRouteScreen> createState() => _AddRouteScreenState();
+  _EditRouteScreenState createState() => _EditRouteScreenState();
 }
 
-class _AddRouteScreenState extends State<AddRouteScreen> {
+class _EditRouteScreenState extends State<EditRouteScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _startController = TextEditingController();
   final TextEditingController _endController = TextEditingController();
   final List<Geolocation> _stops = [];
-  bool isLoading = false;
-
   final Set<Marker> _markers = {};
   final List<LatLng> _polylinePoints = [];
   LatLng _selectedLocation = const LatLng(0, 0);
   LatLng _currentLocation = const LatLng(0, 0);
   GoogleMapController? _mapController;
-
   @override
   void initState() {
     super.initState();
     _getCurrentLocation();
+    _nameController.text = widget.route.name;
+    _startController.text = widget.route.start;
+    _endController.text = widget.route.end;
+    _stops.addAll(widget.route.stops);
+    _updateMarkersAndRoute();
   }
 
   Future<void> _getCurrentLocation() async {
     Location location = Location();
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    LocationData locationData;
 
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
+    serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
         return;
       }
     }
 
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
         return;
       }
     }
 
-    _locationData = await location.getLocation();
+    locationData = await location.getLocation();
     setState(() {
       _currentLocation =
-          LatLng(_locationData.latitude!, _locationData.longitude!);
+          LatLng(locationData.latitude!, locationData.longitude!);
       _selectedLocation = _currentLocation;
     });
   }
@@ -73,44 +76,29 @@ class _AddRouteScreenState extends State<AddRouteScreen> {
   void _addStop(Geolocation stop) {
     setState(() {
       _stops.add(stop);
-      _updateMarkersAndRoute();
     });
   }
 
   void _removeStop(Geolocation stop) {
     setState(() {
       _stops.remove(stop);
-      _updateMarkersAndRoute();
     });
   }
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-      // Create the route object
-      MyRoute.Route route = MyRoute.Route(
+      MyRoute.Route editedRoute = MyRoute.Route(
+        routeId: widget.route.routeId,
         name: _nameController.text,
         start: _startController.text,
         end: _endController.text,
         stops: _stops,
       );
-      context.read<RouteService>().addRoute(route).then((value) {
-        setState(() {
-          isLoading = false;
-        });
-        showSnackBar(context, 'Route has been added');
-        _formKey.currentState!.reset();
-        _nameController.clear();
-        _startController.clear();
-        _endController.clear();
-        setState(() {
-          _stops.clear();
-          _markers.clear();
-          _polylinePoints.clear();
-        });
-        context.router.pop();
+      context.read<RouteService>().updateRoute(editedRoute).then((value) {
+        showSnackBar(context, 'Route Updated Successfully');
+        Navigator.pop(context);
+      }).catchError((error) {
+        showSnackBar(context, 'Failed to update route');
       });
     }
   }
@@ -118,8 +106,8 @@ class _AddRouteScreenState extends State<AddRouteScreen> {
   @override
   void dispose() {
     super.dispose();
-    _endController.dispose();
     _nameController.dispose();
+    _startController.dispose();
     _endController.dispose();
   }
 
@@ -242,7 +230,7 @@ class _AddRouteScreenState extends State<AddRouteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Route'),
+        title: Text('Edit Route'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -363,14 +351,10 @@ class _AddRouteScreenState extends State<AddRouteScreen> {
               const SizedBox(height: 16.0),
               const Divider(),
               const SizedBox(height: 16.0),
-              isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    )
-                  : MyButton(
-                      onPressed: _submitForm,
-                      text: const Text('Submit'),
-                    ),
+              ElevatedButton(
+                onPressed: _submitForm,
+                child: const Text('Save Changes'),
+              ),
             ],
           ),
         ),

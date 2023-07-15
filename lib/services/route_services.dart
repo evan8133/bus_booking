@@ -32,6 +32,10 @@ class RouteService {
     return routes;
   }
 
+  Future<void> updateRoute(Route route) {
+    return routesCollection.doc(route.routeId).update(route.toJson());
+  }
+
   Future<void> updateStops(String routeId, List<Geolocation> stops) {
     return routesCollection.doc(routeId).update({'stops': stops});
   }
