@@ -11,8 +11,8 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i28;
-import 'package:flutter/material.dart' as _i29;
+import 'package:auto_route/auto_route.dart' as _i30;
+import 'package:flutter/material.dart' as _i31;
 
 import '../admin/home/admin_home_screen.dart' as _i5;
 import '../admin/manage/admin_view_booking.dart' as _i10;
@@ -34,10 +34,12 @@ import '../admin/manage/schedule/add_schedule.dart' as _i22;
 import '../admin/manage/schedule/admin_manage_schdedule.dart' as _i9;
 import '../admin/manage/schedule/edit_schedule.dart' as _i23;
 import '../admin/manage/schedule/view_schedule.dart' as _i24;
-import '../models/bus.dart' as _i31;
-import '../models/driver.dart' as _i30;
-import '../models/route.dart' as _i32;
-import '../models/schedule.dart' as _i33;
+import '../driver/driver_home.dart' as _i29;
+import '../driver/driver_login.dart' as _i28;
+import '../models/bus.dart' as _i33;
+import '../models/driver.dart' as _i32;
+import '../models/route.dart' as _i34;
+import '../models/schedule.dart' as _i35;
 import '../screens/home/home_screen.dart' as _i4;
 import '../screens/login/login_screen.dart' as _i2;
 import '../screens/registeration/register_screen.dart' as _i3;
@@ -46,87 +48,87 @@ import '../screens/schdeule_routes/view_schedule.dart' as _i27;
 import '../screens/splash/splash_screen.dart' as _i1;
 import '../screens/tickets/tickets.dart' as _i26;
 
-class AppRouter extends _i28.RootStackRouter {
-  AppRouter([_i29.GlobalKey<_i29.NavigatorState>? navigatorKey])
+class AppRouter extends _i30.RootStackRouter {
+  AppRouter([_i31.GlobalKey<_i31.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i28.PageFactory> pagesMap = {
+  final Map<String, _i30.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreen(),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.LoginScreen(),
       );
     },
     RegisterationRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.RegisterationScreen(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.HomeScreen(),
       );
     },
     AdminRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i5.AdminScreen(),
       );
     },
     ManageBusRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.ManageBusScreen(),
       );
     },
     ManageDriverRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i7.ManageDriverScreen(),
       );
     },
     ManageRouteRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i8.ManageRouteScreen(),
       );
     },
     ManageScheduleRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i9.ManageScheduleScreen(),
       );
     },
     ViewBookingRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i10.ViewBookingScreen(),
       );
     },
     ViewUserRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i11.ViewUserScreen(),
       );
     },
     AddDriverRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i12.AddDriverScreen(),
       );
     },
     EditDriverRoute.name: (routeData) {
       final args = routeData.argsAs<EditDriverRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i13.EditDriverScreen(
           key: args.key,
@@ -135,14 +137,14 @@ class AppRouter extends _i28.RootStackRouter {
       );
     },
     AddBusRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i14.AddBusScreen(),
       );
     },
     EditBusRoute.name: (routeData) {
       final args = routeData.argsAs<EditBusRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i15.EditBusScreen(
           key: args.key,
@@ -151,32 +153,32 @@ class AppRouter extends _i28.RootStackRouter {
       );
     },
     SelectDriverRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i16.SelectDriverScreen(),
       );
     },
     SelectBusRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i17.SelectBusScreen(),
       );
     },
     SelectRouteRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i18.SelectRouteScreen(),
       );
     },
     AddRouteRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i19.AddRouteScreen(),
       );
     },
     ViewRouteInfoRoute.name: (routeData) {
       final args = routeData.argsAs<ViewRouteInfoRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i20.ViewRouteInfoScreen(
           key: args.key,
@@ -186,7 +188,7 @@ class AppRouter extends _i28.RootStackRouter {
     },
     EditRouteRoute.name: (routeData) {
       final args = routeData.argsAs<EditRouteRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i21.EditRouteScreen(
           key: args.key,
@@ -195,14 +197,14 @@ class AppRouter extends _i28.RootStackRouter {
       );
     },
     AddScheduleRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i22.AddScheduleScreen(),
       );
     },
     EditScheduleRoute.name: (routeData) {
       final args = routeData.argsAs<EditScheduleRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i23.EditScheduleScreen(
           key: args.key,
@@ -212,7 +214,7 @@ class AppRouter extends _i28.RootStackRouter {
     },
     ViewScheduleRoute.name: (routeData) {
       final args = routeData.argsAs<ViewScheduleRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i24.ViewScheduleScreen(
           key: args.key,
@@ -221,145 +223,171 @@ class AppRouter extends _i28.RootStackRouter {
       );
     },
     ScheduledRoutesRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i25.ScheduledRoutesScreen(),
       );
     },
     MyTicketsRoute.name: (routeData) {
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i26.MyTicketsScreen(),
       );
     },
     ViewScheduleRoutesRoute.name: (routeData) {
       final args = routeData.argsAs<ViewScheduleRoutesRouteArgs>();
-      return _i28.MaterialPageX<dynamic>(
+      return _i30.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i27.ViewScheduleRoutesScreen(
           key: args.key,
           schedule: args.schedule,
+          bus: args.bus,
+          route: args.route,
+        ),
+      );
+    },
+    DriverLoginRoute.name: (routeData) {
+      return _i30.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i28.DriverLoginScreen(),
+      );
+    },
+    DriverViewRoute.name: (routeData) {
+      final args = routeData.argsAs<DriverViewRouteArgs>();
+      return _i30.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i29.DriverViewScreen(
+          key: args.key,
+          driver: args.driver,
         ),
       );
     },
   };
 
   @override
-  List<_i28.RouteConfig> get routes => [
-        _i28.RouteConfig(
+  List<_i30.RouteConfig> get routes => [
+        _i30.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           LoginRoute.name,
           path: '/login',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           RegisterationRoute.name,
           path: '/register',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           AdminRoute.name,
           path: '/admin',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ManageBusRoute.name,
           path: '/manage-bus',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ManageDriverRoute.name,
           path: '/manage-driver',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ManageRouteRoute.name,
           path: '/manage-route',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ManageScheduleRoute.name,
           path: '/manage-schedule',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ViewBookingRoute.name,
           path: '/view-booking',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ViewUserRoute.name,
           path: '/view-user',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           AddDriverRoute.name,
           path: '/add-driver',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           EditDriverRoute.name,
           path: '/edit-driver:driver',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           AddBusRoute.name,
           path: '/add-bus',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           EditBusRoute.name,
           path: '/edit-bus:bus',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           SelectDriverRoute.name,
           path: '/select-driver',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           SelectBusRoute.name,
           path: '/select-bus',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           SelectRouteRoute.name,
           path: '/select-route',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           AddRouteRoute.name,
           path: '/add-route',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ViewRouteInfoRoute.name,
           path: '/view-route-info:route',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           EditRouteRoute.name,
           path: '/edit-route:route',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           AddScheduleRoute.name,
           path: '/add-schedule',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           EditScheduleRoute.name,
           path: '/edit-schedule:schedule',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ViewScheduleRoute.name,
           path: '/view-schedule:schedule',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ScheduledRoutesRoute.name,
           path: '/scheduled-routes',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           MyTicketsRoute.name,
           path: '/my-tickets',
         ),
-        _i28.RouteConfig(
+        _i30.RouteConfig(
           ViewScheduleRoutesRoute.name,
           path: '/view-schedule-routes:schedule',
+        ),
+        _i30.RouteConfig(
+          DriverLoginRoute.name,
+          path: '/driver-login',
+        ),
+        _i30.RouteConfig(
+          DriverViewRoute.name,
+          path: '/driver-view:driver',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashRoute extends _i28.PageRouteInfo<void> {
+class SplashRoute extends _i30.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -371,7 +399,7 @@ class SplashRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginScreen]
-class LoginRoute extends _i28.PageRouteInfo<void> {
+class LoginRoute extends _i30.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
@@ -383,7 +411,7 @@ class LoginRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RegisterationScreen]
-class RegisterationRoute extends _i28.PageRouteInfo<void> {
+class RegisterationRoute extends _i30.PageRouteInfo<void> {
   const RegisterationRoute()
       : super(
           RegisterationRoute.name,
@@ -395,7 +423,7 @@ class RegisterationRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.HomeScreen]
-class HomeRoute extends _i28.PageRouteInfo<void> {
+class HomeRoute extends _i30.PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
@@ -407,7 +435,7 @@ class HomeRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.AdminScreen]
-class AdminRoute extends _i28.PageRouteInfo<void> {
+class AdminRoute extends _i30.PageRouteInfo<void> {
   const AdminRoute()
       : super(
           AdminRoute.name,
@@ -419,7 +447,7 @@ class AdminRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.ManageBusScreen]
-class ManageBusRoute extends _i28.PageRouteInfo<void> {
+class ManageBusRoute extends _i30.PageRouteInfo<void> {
   const ManageBusRoute()
       : super(
           ManageBusRoute.name,
@@ -431,7 +459,7 @@ class ManageBusRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.ManageDriverScreen]
-class ManageDriverRoute extends _i28.PageRouteInfo<void> {
+class ManageDriverRoute extends _i30.PageRouteInfo<void> {
   const ManageDriverRoute()
       : super(
           ManageDriverRoute.name,
@@ -443,7 +471,7 @@ class ManageDriverRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.ManageRouteScreen]
-class ManageRouteRoute extends _i28.PageRouteInfo<void> {
+class ManageRouteRoute extends _i30.PageRouteInfo<void> {
   const ManageRouteRoute()
       : super(
           ManageRouteRoute.name,
@@ -455,7 +483,7 @@ class ManageRouteRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.ManageScheduleScreen]
-class ManageScheduleRoute extends _i28.PageRouteInfo<void> {
+class ManageScheduleRoute extends _i30.PageRouteInfo<void> {
   const ManageScheduleRoute()
       : super(
           ManageScheduleRoute.name,
@@ -467,7 +495,7 @@ class ManageScheduleRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ViewBookingScreen]
-class ViewBookingRoute extends _i28.PageRouteInfo<void> {
+class ViewBookingRoute extends _i30.PageRouteInfo<void> {
   const ViewBookingRoute()
       : super(
           ViewBookingRoute.name,
@@ -479,7 +507,7 @@ class ViewBookingRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.ViewUserScreen]
-class ViewUserRoute extends _i28.PageRouteInfo<void> {
+class ViewUserRoute extends _i30.PageRouteInfo<void> {
   const ViewUserRoute()
       : super(
           ViewUserRoute.name,
@@ -491,7 +519,7 @@ class ViewUserRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.AddDriverScreen]
-class AddDriverRoute extends _i28.PageRouteInfo<void> {
+class AddDriverRoute extends _i30.PageRouteInfo<void> {
   const AddDriverRoute()
       : super(
           AddDriverRoute.name,
@@ -503,10 +531,10 @@ class AddDriverRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.EditDriverScreen]
-class EditDriverRoute extends _i28.PageRouteInfo<EditDriverRouteArgs> {
+class EditDriverRoute extends _i30.PageRouteInfo<EditDriverRouteArgs> {
   EditDriverRoute({
-    _i29.Key? key,
-    required _i30.Driver driver,
+    _i31.Key? key,
+    required _i32.Driver driver,
   }) : super(
           EditDriverRoute.name,
           path: '/edit-driver:driver',
@@ -525,9 +553,9 @@ class EditDriverRouteArgs {
     required this.driver,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i30.Driver driver;
+  final _i32.Driver driver;
 
   @override
   String toString() {
@@ -537,7 +565,7 @@ class EditDriverRouteArgs {
 
 /// generated route for
 /// [_i14.AddBusScreen]
-class AddBusRoute extends _i28.PageRouteInfo<void> {
+class AddBusRoute extends _i30.PageRouteInfo<void> {
   const AddBusRoute()
       : super(
           AddBusRoute.name,
@@ -549,10 +577,10 @@ class AddBusRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.EditBusScreen]
-class EditBusRoute extends _i28.PageRouteInfo<EditBusRouteArgs> {
+class EditBusRoute extends _i30.PageRouteInfo<EditBusRouteArgs> {
   EditBusRoute({
-    _i29.Key? key,
-    required _i31.Bus bus,
+    _i31.Key? key,
+    required _i33.Bus bus,
   }) : super(
           EditBusRoute.name,
           path: '/edit-bus:bus',
@@ -571,9 +599,9 @@ class EditBusRouteArgs {
     required this.bus,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i31.Bus bus;
+  final _i33.Bus bus;
 
   @override
   String toString() {
@@ -583,7 +611,7 @@ class EditBusRouteArgs {
 
 /// generated route for
 /// [_i16.SelectDriverScreen]
-class SelectDriverRoute extends _i28.PageRouteInfo<void> {
+class SelectDriverRoute extends _i30.PageRouteInfo<void> {
   const SelectDriverRoute()
       : super(
           SelectDriverRoute.name,
@@ -595,7 +623,7 @@ class SelectDriverRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.SelectBusScreen]
-class SelectBusRoute extends _i28.PageRouteInfo<void> {
+class SelectBusRoute extends _i30.PageRouteInfo<void> {
   const SelectBusRoute()
       : super(
           SelectBusRoute.name,
@@ -607,7 +635,7 @@ class SelectBusRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.SelectRouteScreen]
-class SelectRouteRoute extends _i28.PageRouteInfo<void> {
+class SelectRouteRoute extends _i30.PageRouteInfo<void> {
   const SelectRouteRoute()
       : super(
           SelectRouteRoute.name,
@@ -619,7 +647,7 @@ class SelectRouteRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i19.AddRouteScreen]
-class AddRouteRoute extends _i28.PageRouteInfo<void> {
+class AddRouteRoute extends _i30.PageRouteInfo<void> {
   const AddRouteRoute()
       : super(
           AddRouteRoute.name,
@@ -631,10 +659,10 @@ class AddRouteRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i20.ViewRouteInfoScreen]
-class ViewRouteInfoRoute extends _i28.PageRouteInfo<ViewRouteInfoRouteArgs> {
+class ViewRouteInfoRoute extends _i30.PageRouteInfo<ViewRouteInfoRouteArgs> {
   ViewRouteInfoRoute({
-    _i29.Key? key,
-    required _i32.Route route,
+    _i31.Key? key,
+    required _i34.Route route,
   }) : super(
           ViewRouteInfoRoute.name,
           path: '/view-route-info:route',
@@ -653,9 +681,9 @@ class ViewRouteInfoRouteArgs {
     required this.route,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i32.Route route;
+  final _i34.Route route;
 
   @override
   String toString() {
@@ -665,10 +693,10 @@ class ViewRouteInfoRouteArgs {
 
 /// generated route for
 /// [_i21.EditRouteScreen]
-class EditRouteRoute extends _i28.PageRouteInfo<EditRouteRouteArgs> {
+class EditRouteRoute extends _i30.PageRouteInfo<EditRouteRouteArgs> {
   EditRouteRoute({
-    _i29.Key? key,
-    required _i32.Route route,
+    _i31.Key? key,
+    required _i34.Route route,
   }) : super(
           EditRouteRoute.name,
           path: '/edit-route:route',
@@ -687,9 +715,9 @@ class EditRouteRouteArgs {
     required this.route,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i32.Route route;
+  final _i34.Route route;
 
   @override
   String toString() {
@@ -699,7 +727,7 @@ class EditRouteRouteArgs {
 
 /// generated route for
 /// [_i22.AddScheduleScreen]
-class AddScheduleRoute extends _i28.PageRouteInfo<void> {
+class AddScheduleRoute extends _i30.PageRouteInfo<void> {
   const AddScheduleRoute()
       : super(
           AddScheduleRoute.name,
@@ -711,10 +739,10 @@ class AddScheduleRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i23.EditScheduleScreen]
-class EditScheduleRoute extends _i28.PageRouteInfo<EditScheduleRouteArgs> {
+class EditScheduleRoute extends _i30.PageRouteInfo<EditScheduleRouteArgs> {
   EditScheduleRoute({
-    _i29.Key? key,
-    required _i33.Schedule schedule,
+    _i31.Key? key,
+    required _i35.Schedule schedule,
   }) : super(
           EditScheduleRoute.name,
           path: '/edit-schedule:schedule',
@@ -733,9 +761,9 @@ class EditScheduleRouteArgs {
     required this.schedule,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i33.Schedule schedule;
+  final _i35.Schedule schedule;
 
   @override
   String toString() {
@@ -745,10 +773,10 @@ class EditScheduleRouteArgs {
 
 /// generated route for
 /// [_i24.ViewScheduleScreen]
-class ViewScheduleRoute extends _i28.PageRouteInfo<ViewScheduleRouteArgs> {
+class ViewScheduleRoute extends _i30.PageRouteInfo<ViewScheduleRouteArgs> {
   ViewScheduleRoute({
-    _i29.Key? key,
-    required _i33.Schedule schedule,
+    _i31.Key? key,
+    required _i35.Schedule schedule,
   }) : super(
           ViewScheduleRoute.name,
           path: '/view-schedule:schedule',
@@ -767,9 +795,9 @@ class ViewScheduleRouteArgs {
     required this.schedule,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i33.Schedule schedule;
+  final _i35.Schedule schedule;
 
   @override
   String toString() {
@@ -779,7 +807,7 @@ class ViewScheduleRouteArgs {
 
 /// generated route for
 /// [_i25.ScheduledRoutesScreen]
-class ScheduledRoutesRoute extends _i28.PageRouteInfo<void> {
+class ScheduledRoutesRoute extends _i30.PageRouteInfo<void> {
   const ScheduledRoutesRoute()
       : super(
           ScheduledRoutesRoute.name,
@@ -791,7 +819,7 @@ class ScheduledRoutesRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i26.MyTicketsScreen]
-class MyTicketsRoute extends _i28.PageRouteInfo<void> {
+class MyTicketsRoute extends _i30.PageRouteInfo<void> {
   const MyTicketsRoute()
       : super(
           MyTicketsRoute.name,
@@ -804,16 +832,20 @@ class MyTicketsRoute extends _i28.PageRouteInfo<void> {
 /// generated route for
 /// [_i27.ViewScheduleRoutesScreen]
 class ViewScheduleRoutesRoute
-    extends _i28.PageRouteInfo<ViewScheduleRoutesRouteArgs> {
+    extends _i30.PageRouteInfo<ViewScheduleRoutesRouteArgs> {
   ViewScheduleRoutesRoute({
-    _i29.Key? key,
-    required _i33.Schedule schedule,
+    _i31.Key? key,
+    required _i35.Schedule schedule,
+    required _i33.Bus bus,
+    required _i34.Route route,
   }) : super(
           ViewScheduleRoutesRoute.name,
           path: '/view-schedule-routes:schedule',
           args: ViewScheduleRoutesRouteArgs(
             key: key,
             schedule: schedule,
+            bus: bus,
+            route: route,
           ),
         );
 
@@ -824,14 +856,66 @@ class ViewScheduleRoutesRouteArgs {
   const ViewScheduleRoutesRouteArgs({
     this.key,
     required this.schedule,
+    required this.bus,
+    required this.route,
   });
 
-  final _i29.Key? key;
+  final _i31.Key? key;
 
-  final _i33.Schedule schedule;
+  final _i35.Schedule schedule;
+
+  final _i33.Bus bus;
+
+  final _i34.Route route;
 
   @override
   String toString() {
-    return 'ViewScheduleRoutesRouteArgs{key: $key, schedule: $schedule}';
+    return 'ViewScheduleRoutesRouteArgs{key: $key, schedule: $schedule, bus: $bus, route: $route}';
+  }
+}
+
+/// generated route for
+/// [_i28.DriverLoginScreen]
+class DriverLoginRoute extends _i30.PageRouteInfo<void> {
+  const DriverLoginRoute()
+      : super(
+          DriverLoginRoute.name,
+          path: '/driver-login',
+        );
+
+  static const String name = 'DriverLoginRoute';
+}
+
+/// generated route for
+/// [_i29.DriverViewScreen]
+class DriverViewRoute extends _i30.PageRouteInfo<DriverViewRouteArgs> {
+  DriverViewRoute({
+    _i31.Key? key,
+    required _i32.Driver driver,
+  }) : super(
+          DriverViewRoute.name,
+          path: '/driver-view:driver',
+          args: DriverViewRouteArgs(
+            key: key,
+            driver: driver,
+          ),
+        );
+
+  static const String name = 'DriverViewRoute';
+}
+
+class DriverViewRouteArgs {
+  const DriverViewRouteArgs({
+    this.key,
+    required this.driver,
+  });
+
+  final _i31.Key? key;
+
+  final _i32.Driver driver;
+
+  @override
+  String toString() {
+    return 'DriverViewRouteArgs{key: $key, driver: $driver}';
   }
 }

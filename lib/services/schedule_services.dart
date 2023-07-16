@@ -30,10 +30,23 @@ class ScheduleService {
         .toList();
     return schedules;
   }
+
   //update schedule
   Future<void> updateSchedule(Schedule schedule) {
     return schedulesCollection
         .doc(schedule.scheduleId)
         .update(schedule.toJson());
+  }
+
+  Future<Schedule?> getScheduleByBusId(String busId) async {
+    QuerySnapshot snapshot =
+        await schedulesCollection.where('busId', isEqualTo: busId).get();
+
+    if (snapshot.size > 0) {
+      var data = snapshot.docs.first.data();
+      return Schedule.fromJson(data as Map<String, dynamic>);
+    } else {
+      return null;
+    }
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:bus_booking/routes/routes.gr.dart';
 import 'package:bus_booking/utils/button.dart';
@@ -111,6 +110,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: const Text('Sign Up'),
                       onPressed: () {
                         context.router.push(const RegisterationRoute());
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Divider(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: MyButton(
+                      text: const Text('Bus Driver Login'),
+                      onPressed: () {
+                        context.router.push(const DriverLoginRoute());
                       },
                     ),
                   ),

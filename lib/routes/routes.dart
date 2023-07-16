@@ -25,6 +25,8 @@ import '../admin/manage/driver/add_driver.dart';
 import '../admin/manage/schedule/add_schedule.dart';
 import '../admin/manage/schedule/edit_schedule.dart';
 import '../admin/manage/schedule/view_schedule.dart';
+import '../driver/driver_home.dart';
+import '../driver/driver_login.dart';
 import '../screens/schdeule_routes/view_schedule.dart';
 import '../screens/splash/splash_screen.dart';
 
@@ -139,6 +141,14 @@ import '../screens/splash/splash_screen.dart';
     MaterialRoute(
       page: ViewScheduleRoutesScreen,
       path: '/view-schedule-routes:schedule',
+    ),
+    MaterialRoute(
+      page: DriverLoginScreen,
+      path: '/driver-login',
+    ),
+    MaterialRoute(
+      page: DriverViewScreen,
+      path: '/driver-view:driver',
     )
   ],
 )

@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: const Text('User Home'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -33,6 +33,31 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           )
         ],
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Welcome to the User Home!',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Use the drawer menu to navigate through the application.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

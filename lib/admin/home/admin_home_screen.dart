@@ -28,8 +28,30 @@ class AdminScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
-        child: Text('Admin Home'),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Welcome to the Admin Home!',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Use the drawer menu to start managing your application.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
