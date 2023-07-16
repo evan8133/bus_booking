@@ -30,4 +30,10 @@ class ScheduleService {
         .toList();
     return schedules;
   }
+  //update schedule
+  Future<void> updateSchedule(Schedule schedule) {
+    return schedulesCollection
+        .doc(schedule.scheduleId)
+        .update(schedule.toJson());
+  }
 }

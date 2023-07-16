@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bus_booking/models/bus.dart';
 import 'package:bus_booking/models/schedule.dart';
+import 'package:bus_booking/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../services/schedule_services.dart';
 import '../../../utils/input_box.dart';
 import '../../../utils/snackMessage.dart';
+import '../../../models/route.dart' as MyRoute;
 
 class AddScheduleScreen extends StatefulWidget {
   const AddScheduleScreen({Key? key}) : super(key: key);
@@ -47,37 +50,29 @@ class _AddScheduleScreenState extends State<AddScheduleScreen> {
         showSnackBar(context, 'Please add at least one departure time.');
         return;
       }
-      void _saveSchedule() {
-        if (_formKey.currentState?.validate() == true) {
-          if (_departureTimes.isEmpty) {
-            showSnackBar(context, 'Please add at least one departure time.');
-            return;
-          }
 
-          final List<DateTime> departureTimes = _departureTimes
-              .map((timeOfDay) => DateTime(
-                    DateTime.now().year,
-                    DateTime.now().month,
-                    DateTime.now().day,
-                    timeOfDay.hour,
-                    timeOfDay.minute,
-                  ))
-              .toList();
+      final List<DateTime> departureTimes = _departureTimes
+          .map((timeOfDay) => DateTime(
+                DateTime.now().year,
+                DateTime.now().month,
+                DateTime.now().day,
+                timeOfDay.hour,
+                timeOfDay.minute,
+              ))
+          .toList();
 
-          Schedule schedule = Schedule(
-            routeId: _routeIdController.text,
-            busId: _busIdController.text,
-            departureTimes: departureTimes,
-          );
+      Schedule schedule = Schedule(
+        routeId: _routeIdController.text,
+        busId: _busIdController.text,
+        departureTimes: departureTimes,
+      );
 
-          context.read<ScheduleService>().addSchedule(schedule).then((value) {
-            showSnackBar(context, 'Schedule added successfully');
-            context.router.pop();
-          }).catchError((error) {
-            showSnackBar(context, error.toString());
-          });
-        }
-      }
+      context.read<ScheduleService>().addSchedule(schedule).then((value) {
+        showSnackBar(context, 'Schedule added successfully');
+        context.router.pop();
+      }).catchError((error) {
+        showSnackBar(context, error.toString());
+      });
     }
   }
 
@@ -105,8 +100,12 @@ class _AddScheduleScreenState extends State<AddScheduleScreen> {
                 labelText: 'Route ID',
                 hintText: 'Enter Route ID',
                 keyboardType: TextInputType.text,
-                action: () {
-                  // Implement logic to search for route ID
+                action: () async {
+                  var route =
+                      await context.router.push(const SelectRouteRoute());
+                  setState(() {
+                    _routeIdController.text = (route as MyRoute.Route).routeId;
+                  });
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -122,8 +121,11 @@ class _AddScheduleScreenState extends State<AddScheduleScreen> {
                 labelText: 'Bus ID',
                 hintText: 'Enter Bus ID',
                 keyboardType: TextInputType.text,
-                action: () {
-                  // Implement logic to search for bus ID
+                action: () async {
+                  var bus = await context.router.push(const SelectBusRoute());
+                  setState(() {
+                    _busIdController.text = (bus as Bus).busId;
+                  });
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
