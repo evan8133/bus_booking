@@ -129,7 +129,7 @@ class _EditDriverScreenState extends State<EditDriverScreen> {
                       ? const Center(
                           child: CircularProgressIndicator.adaptive(),
                         )
-                      : const Text('Add Driver'),
+                      : const Text('update Driver'),
                   onPressed: _editDriver,
                 ),
               ),
