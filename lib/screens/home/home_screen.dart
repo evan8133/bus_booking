@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bus_booking/screens/user_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         title: const Text('Home Screen'),
         centerTitle: true,

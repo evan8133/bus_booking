@@ -1,21 +1,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bus_booking/admin/home/admin_home_screen.dart';
+import 'package:bus_booking/admin/manage/admin_view_booking.dart';
+import 'package:bus_booking/admin/manage/admin_view_users.dart';
 import 'package:bus_booking/admin/manage/bus/add_bus.dart';
 import 'package:bus_booking/admin/manage/bus/admin_manage_bus.dart';
 import 'package:bus_booking/admin/manage/bus/edit_bus.dart';
 import 'package:bus_booking/admin/manage/bus/select_bus.dart';
 import 'package:bus_booking/admin/manage/bus_route/add_route.dart';
+import 'package:bus_booking/admin/manage/bus_route/admin_manage_route.dart';
 import 'package:bus_booking/admin/manage/bus_route/select_bus_route.dart';
 import 'package:bus_booking/admin/manage/driver/admin_manage_driver.dart';
-import 'package:bus_booking/admin/manage/bus_route/admin_manage_route.dart';
 import 'package:bus_booking/admin/manage/driver/edit_driver.dart';
 import 'package:bus_booking/admin/manage/driver/select_driver.dart';
 import 'package:bus_booking/admin/manage/schedule/admin_manage_schdedule.dart';
-import 'package:bus_booking/admin/manage/admin_view_booking.dart';
-import 'package:bus_booking/admin/manage/admin_view_users.dart';
 import 'package:bus_booking/screens/home/home_screen.dart';
 import 'package:bus_booking/screens/login/login_screen.dart';
 import 'package:bus_booking/screens/registeration/register_screen.dart';
+import 'package:bus_booking/screens/schdeule_routes/scheduled_routes.dart';
+import 'package:bus_booking/screens/tickets/tickets.dart';
 
 import '../admin/manage/bus_route/edit_route.dart';
 import '../admin/manage/bus_route/view_route_info.dart';
@@ -23,6 +25,7 @@ import '../admin/manage/driver/add_driver.dart';
 import '../admin/manage/schedule/add_schedule.dart';
 import '../admin/manage/schedule/edit_schedule.dart';
 import '../admin/manage/schedule/view_schedule.dart';
+import '../screens/schdeule_routes/view_schedule.dart';
 import '../screens/splash/splash_screen.dart';
 
 @MaterialAutoRouter(
@@ -125,6 +128,18 @@ import '../screens/splash/splash_screen.dart';
       page: ViewScheduleScreen,
       path: '/view-schedule:schedule',
     ),
+    MaterialRoute(
+      page: ScheduledRoutesScreen,
+      path: '/scheduled-routes',
+    ),
+    MaterialRoute(
+      page: MyTicketsScreen,
+      path: '/my-tickets',
+    ),
+    MaterialRoute(
+      page: ViewScheduleRoutesScreen,
+      path: '/view-schedule-routes:schedule',
+    )
   ],
 )
 class $AppRouter {}
